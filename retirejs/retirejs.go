@@ -92,13 +92,13 @@ func (s *RetireJs) Handle(ctx context.Context, client script.ClientV1, conf *plu
 		issues = append(issues, &issue)
 	}
 	//	techs = s.parseWappalyzer(wapp)
-	//	if len(issues) > 0 {
-	//		issueReport := report.Report{
-	//			Type:   report.TypeIssues,
-	//			Issues: issues,
-	//		}
-	//		multiReport.Multi = append(multiReport.Multi, &issueReport)
-	//	}
+	if len(issues) > 0 {
+		issueReport := report.Report{
+			Type:   report.TypeIssues,
+			Issues: issues,
+		}
+		multiReport.Multi = append(multiReport.Multi, &issueReport)
+	}
 	if len(techs) > 0 {
 		techReport := report.Report{
 			Type:  report.TypeTechs,

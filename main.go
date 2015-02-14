@@ -5,9 +5,9 @@ package main
 import (
 	"code.google.com/p/go.net/context"
 	"github.com/bearded-web/bearded/pkg/script"
-	"github.com/bearded-web/bearded/pkg/transport/mango"
 	"github.com/davecgh/go-spew/spew"
 
+	"github.com/bearded-web/bearded/pkg/transport/websocket"
 	"github.com/bearded-web/retirejs-script/retirejs"
 )
 
@@ -15,12 +15,15 @@ func run(addr string) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	transp, err := mango.NewServer(addr)
-	if err != nil {
-		panic(err)
-	}
+	//	transp, err := mango.NewServer(addr)
+	transp := websocket.NewServer(addr)
 	client, err := script.NewRemoteClient(transp)
-	go transp.Serve(ctx, client)
+	go func() {
+		err := transp.Serve(ctx, client)
+		if err != nil {
+			panic(err)
+		}
+	}()
 
 	if err != nil {
 		panic(err)
@@ -43,5 +46,6 @@ func run(addr string) {
 }
 
 func main() {
-	run("tcp://:9238")
+	//	run("tcp://:9238")
+	run(":9238")
 }
