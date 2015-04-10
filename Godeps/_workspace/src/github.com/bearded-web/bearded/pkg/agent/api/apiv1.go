@@ -3,7 +3,6 @@ package api
 
 import (
 	"github.com/bearded-web/bearded/models/plan"
-	"github.com/bearded-web/bearded/models/plugin"
 	"github.com/bearded-web/bearded/models/report"
 )
 
@@ -16,6 +15,7 @@ const (
 	GetPluginVersions
 	RunPlugin
 	SendReport
+	DownloadFile
 )
 
 type RequestV1 struct {
@@ -24,11 +24,13 @@ type RequestV1 struct {
 	GetPluginVersions string
 	RunPlugin         *plan.WorkflowStep
 	SendReport        *report.Report
+	DownloadFile      string
 }
 
 type ResponseV1 struct {
-	GetConfig *plugin.Conf
+	GetConfig *plan.Conf
 
 	GetPluginVersions []string
 	RunPlugin         *report.Report
+	DownloadFile      []byte
 }

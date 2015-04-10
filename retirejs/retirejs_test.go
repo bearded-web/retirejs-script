@@ -13,7 +13,6 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/bearded-web/bearded/models/plan"
-	"github.com/bearded-web/bearded/models/plugin"
 	"github.com/bearded-web/bearded/models/report"
 	"github.com/bearded-web/bearded/pkg/script"
 )
@@ -55,14 +54,14 @@ func TestHandle(t *testing.T) {
 		pl := plan.WorkflowStep{
 			Name:   "underscan",
 			Plugin: "barbudo/retirejs:0.0.2",
-			Conf:   &plugin.Conf{CommandArgs: fmt.Sprintf(target)},
+			Conf:   &plan.Conf{CommandArgs: fmt.Sprintf(target)},
 		}
 		client.On("RunPlugin", bg, &pl).
 			Return(&report.Report{Type: report.TypeRaw, Raw: report.Raw{Raw: data.ToolReport}}, nil).Once()
 		client.On("SendReport", bg, data.ExpectedReport).Return(nil).Once()
 
 		var s script.Scripter = New()
-		err := s.Handle(bg, client, &plugin.Conf{Target: target})
+		err := s.Handle(bg, client, &plan.Conf{Target: target})
 		require.NoError(t, err)
 		client.Mock.AssertExpectations(t)
 	}

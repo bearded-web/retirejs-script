@@ -6,16 +6,35 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/bearded-web/bearded/models/plugin"
 	"github.com/bearded-web/bearded/models/target"
 	"github.com/bearded-web/bearded/pkg/pagination"
 )
 
+type File struct {
+	Path string `json:"path" description:"absolute path to file in container"`
+	Name string `json:"name" description:"rename file to name or use path if empty"`
+}
+
+type SharedFile struct {
+	Path string `json:"path" description:"path is relative to /share/"`
+	Text string `json:"text" description:"text is a content of text file"`
+}
+
+type Conf struct {
+	CommandArgs string `json:"commandArgs,omitempty" description:"passed to command line for plugins with type:util"`
+	Target      string `json:"target,omitempty" description:"used in script, taken from scan conf directly"`
+	FormData    string `json:"formData,omitempty" description:"data from form is saved as json string here"`
+
+	// this fields helps to communicate with container through files
+	TakeFiles   []*File       `json:"takeFiles,omitempty" description:"copy this files from container when it's done"`
+	SharedFiles []*SharedFile `json:"sharedFiles,omitempty" description:"share file to container"`
+}
+
 type WorkflowStep struct {
-	Plugin string       `json:"plugin" description:"plugin name"`
-	Name   string       `json:"name" description:"step name"`
-	Desc   string       `json:"desc,omitempty" description:"step description"`
-	Conf   *plugin.Conf `json:"conf,omitempty"`
+	Plugin string `json:"plugin" description:"plugin name"`
+	Name   string `json:"name" description:"step name"`
+	Desc   string `json:"desc,omitempty" description:"step description"`
+	Conf   *Conf  `json:"conf,omitempty"`
 }
 
 type Plan struct {

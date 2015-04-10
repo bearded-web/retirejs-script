@@ -1,8 +1,8 @@
 {
 	"ImportPath": "github.com/bearded-web/retirejs-script",
-	"GoVersion": "go1.4.1",
+	"GoVersion": "go1.4.2",
 	"Packages": [
-		"main.go"
+		"./main.go"
 	],
 	"Deps": [
 		{
@@ -16,40 +16,48 @@
 			"Rev": "38a6ff9215d472ce953bb9aa37b5327715c0f940"
 		},
 		{
-			"ImportPath": "github.com/bearded-web/bearded/models/plan",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"ImportPath": "github.com/bearded-web/bearded/models/file",
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
-			"ImportPath": "github.com/bearded-web/bearded/models/plugin",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"ImportPath": "github.com/bearded-web/bearded/models/issue",
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
+		},
+		{
+			"ImportPath": "github.com/bearded-web/bearded/models/plan",
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/models/report",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/models/target",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/models/tech",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/pkg/agent/api",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/pkg/pagination",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/pkg/script",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/bearded-web/bearded/pkg/transport",
-			"Rev": "6681276c01755aec1d2ce646fd94f060cfc21979"
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
+		},
+		{
+			"ImportPath": "github.com/bearded-web/bearded/pkg/utils",
+			"Rev": "e8e78b47d9c6faf43e230ab99fe9c506c6998e86"
 		},
 		{
 			"ImportPath": "github.com/davecgh/go-spew/spew",
@@ -67,6 +75,10 @@
 			"ImportPath": "github.com/gdamore/mangos",
 			"Comment": "v1.1.0-1-gb7cec85",
 			"Rev": "b7cec85592e9c6126b7ebefacb2444c13649ef39"
+		},
+		{
+			"ImportPath": "github.com/satori/go.uuid",
+			"Rev": "46e1db27972f44c7722f23195ba6a8d2c2f3a0a3"
 		},
 		{
 			"ImportPath": "gopkg.in/mgo.v2/bson",

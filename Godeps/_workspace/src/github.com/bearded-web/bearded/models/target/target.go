@@ -5,12 +5,12 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/bearded-web/bearded/models/report"
+	"github.com/bearded-web/bearded/models/issue"
 	"github.com/bearded-web/bearded/pkg/pagination"
 )
 
 type SummaryReport struct {
-	Issues map[report.Severity]int `json:"issues"`
+	Issues map[issue.Severity]int `json:"issues"`
 }
 
 type Target struct {
@@ -21,7 +21,7 @@ type Target struct {
 	Created time.Time     `json:"created,omitempty"`
 	Updated time.Time     `json:"updated,omitempty"`
 
-	SummaryReport *SummaryReport `json:"summaryReport" bson:"-"`
+	SummaryReport *SummaryReport `json:"summaryReport,omitempty" bson:"-"`
 }
 
 type WebTarget struct {

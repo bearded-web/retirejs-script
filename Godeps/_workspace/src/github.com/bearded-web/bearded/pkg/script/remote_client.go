@@ -5,11 +5,9 @@ import (
 
 	"code.google.com/p/go.net/context"
 	"github.com/bearded-web/bearded/models/plan"
-	"github.com/bearded-web/bearded/models/plugin"
 	"github.com/bearded-web/bearded/models/report"
 	"github.com/bearded-web/bearded/pkg/agent/api"
 	"github.com/bearded-web/bearded/pkg/transport"
-	"github.com/davecgh/go-spew/spew"
 )
 
 type RemoteClient struct {
@@ -31,7 +29,6 @@ func NewRemoteClient(transport transport.Transport) (*RemoteClient, error) {
 }
 
 func (s *RemoteClient) Handle(ctx context.Context, msg transport.Extractor) (interface{}, error) {
-	fmt.Printf("Handle msg", spew.Sdump(msg))
 	req := api.RequestV1{}
 	err := msg.Extract(&req)
 	if err != nil {
@@ -57,7 +54,7 @@ func (s *RemoteClient) WaitForConnection(ctx context.Context) error {
 
 // Client Methods
 
-func (c *RemoteClient) GetConfig(ctx context.Context) (*plugin.Conf, error) {
+func (c *RemoteClient) GetConfig(ctx context.Context) (*plan.Conf, error) {
 	req := api.RequestV1{
 		Method: api.GetConfig,
 	}
@@ -102,4 +99,16 @@ func (c *RemoteClient) SendReport(ctx context.Context, rep *report.Report) error
 		return err
 	}
 	return nil
+}
+
+func (c *RemoteClient) DownloadFile(ctx context.Context, fileId string) ([]byte, error) {
+	req := api.RequestV1{
+		Method:       api.DownloadFile,
+		DownloadFile: fileId,
+	}
+	resp := api.ResponseV1{}
+	if err := c.transp.Request(ctx, req, &resp); err != nil {
+		return nil, err
+	}
+	return resp.DownloadFile, nil
 }
