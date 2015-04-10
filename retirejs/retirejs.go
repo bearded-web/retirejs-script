@@ -105,6 +105,7 @@ func (s *RetireJs) Handle(ctx context.Context, client script.ClientV1, conf *pla
 			issueObj := issue.Issue{
 				Summary:  fmt.Sprintf("Vulnerability in %s version %s", item.Component, item.Version),
 				Severity: issue.SeverityMedium,
+				Vector: &issue.Vector{Url: conf.Target},
 			}
 			if severity, ok := SeverityMap[vuln.Severity]; ok {
 				issueObj.Severity = severity
