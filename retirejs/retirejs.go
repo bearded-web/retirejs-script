@@ -3,8 +3,9 @@ package retirejs
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/facebookgo/stackerr"
 
@@ -13,7 +14,6 @@ import (
 	"github.com/bearded-web/bearded/models/report"
 	"github.com/bearded-web/bearded/models/tech"
 	"github.com/bearded-web/bearded/pkg/script"
-	"strings"
 )
 
 const toolName = "barbudo/retirejs"
